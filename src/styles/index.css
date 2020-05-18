@@ -33,3 +33,31 @@ body {
 	background-color: red;
 	cursor: pointer;
 }
+
+.back,
+.forward {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0px;
+	width: 25px;
+	height: 25px;
+	color: white;
+	-webkit-app-region: no-drag;
+	-webkit-user-select: none;
+}
+
+.back {
+	right: 50px;
+}
+
+.forward {
+	right: 25px;
+}
+
+.back:hover,
+.forward:hover {
+	background-color: #191919;
+	cursor: pointer;
+}

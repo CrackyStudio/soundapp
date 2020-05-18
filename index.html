@@ -7,9 +7,16 @@
 	</head>
 	<body>
 		<div class="titlebar">
-			<div class="exit" id="exit">&times;</div>
+			<div class="exit">&times;</div>
+			<div class="back">&lt;</div>
+			<div class="forward">&gt;</div>
 		</div>
-		<webview id="browser" src="https://soundcloud.com/crackystudio/likes" style="width: 1080px; height: 575px;" />
+		<webview
+			id="browser"
+			src="https://soundcloud.com/crackystudio/likes"
+			preload="./dist/injector.js"
+			style="width: 1080px; height: 575px;"
+		/>
 		<script>
 			require("./dist/app.js");
 		</script>
