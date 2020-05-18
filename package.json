@@ -1,0 +1,21 @@
+{
+	"name": "soundapp",
+	"version": "1.0.0",
+	"scripts": {
+		"build": "tsc && npm run copy-assets",
+		"watch": "tsc -w",
+		"lint": "tslint -c tslint.json -p tsconfig.json",
+		"start": "npm run build && electron ./dist/main.js",
+		"copy-assets": "cp -rv src/*/ dist/"
+	},
+	"author": "Cracky",
+	"devDependencies": {
+		"@types/jquery": "^3.3.38",
+		"electron": "^6.0.8",
+		"tslint": "^5.19.0",
+		"typescript": "^3.6.0"
+	},
+	"dependencies": {
+		"jquery": "^3.5.1"
+	}
+}

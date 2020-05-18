@@ -1,0 +1,35 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.titlebar {
+	width: 1080px;
+	height: 25px;
+	background-color: black;
+	color: white;
+	margin: 0;
+	padding: 0;
+	-webkit-app-region: drag;
+	-webkit-user-select: none;
+}
+
+.exit {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 25px;
+	height: 25px;
+	color: white;
+	-webkit-app-region: no-drag;
+	-webkit-user-select: none;
+}
+
+.exit:hover {
+	background-color: red;
+	cursor: pointer;
+}
