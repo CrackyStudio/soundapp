@@ -5,7 +5,7 @@ const win = remote.getCurrentWindow();
 const webview = <WebviewTag>document.getElementById("browser");
 
 $(".exit").click(() => {
-	win.close();
+	win.hide();
 });
 
 $(".back").click(() => {
@@ -22,6 +22,6 @@ webview.addEventListener("dom-ready", () => {
 
 webview.addEventListener("media-started-playing", () => {
 	webview.send("show-music", {
-		id: "playbackSoundBadge__titleLink ",
+		id: "playbackSoundBadge__titleLink",
 	});
 });

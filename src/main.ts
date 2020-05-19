@@ -1,13 +1,15 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Tray, Menu } from "electron";
 import * as path from "path";
 
+const iconPath = __dirname + "/assets/icon.png";
 let mainWindow: Electron.BrowserWindow;
+let appTray = null;
 
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		frame: false,
-		height: 600,
-		icon: __dirname + "/assets/icon.png",
+		height: 605,
+		icon: iconPath,
 		resizable: false,
 		webPreferences: {
 			preload: path.join(__dirname, "preload.js"),
@@ -21,8 +23,35 @@ function createWindow() {
 
 	// mainWindow.webContents.openDevTools();
 
-	mainWindow.on("closed", () => {
+	appTray = new Tray(iconPath);
+
+	const contextMenu = Menu.buildFromTemplate([
+		{
+			label: "Show",
+			click: () => {
+				mainWindow.show();
+			},
+		},
+		{
+			type: "separator",
+		},
+		{
+			label: "Quit",
+			click: () => {
+				app.quit();
+			},
+		},
+	]);
+
+	appTray.setContextMenu(contextMenu);
+	appTray.setToolTip("SoundApp");
+
+	mainWindow.on("close", (e) => {
 		mainWindow = null;
+	});
+
+	appTray.on("click", (e) => {
+		mainWindow.show();
 	});
 }
 
