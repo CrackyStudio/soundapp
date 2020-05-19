@@ -1,21 +1,44 @@
 {
 	"name": "soundapp",
 	"version": "1.0.0",
+	"main": "./dist/main.js",
+	"description": "Music *.*",
 	"scripts": {
-		"build": "tsc && npm run copy-assets",
+		"build": "npm run clean && tsc && npm run copy-assets",
 		"watch": "tsc -w",
 		"lint": "tslint -c tslint.json -p tsconfig.json",
 		"start": "npm run build && electron ./dist/main.js",
-		"copy-assets": "cp -rv src/*/ dist/"
+		"copy-assets": "cp -rv src/*/ dist/ && cp -rv index.html dist/",
+		"clean": "rm -rf dist && rm -rf release",
+		"pack": "electron-builder --dir",
+		"dist": "npm run build && electron-builder"
 	},
 	"author": "Cracky",
 	"devDependencies": {
 		"@types/jquery": "^3.3.38",
 		"electron": "^6.0.8",
+		"electron-builder": "^22.6.1",
 		"tslint": "^5.19.0",
 		"typescript": "^3.6.0"
 	},
 	"dependencies": {
+		"electron-debug": "^3.0.1",
 		"jquery": "^3.5.1"
+	},
+	"build": {
+		"appId": "com.cracky.soundapp",
+		"productName": "SoundApp",
+		"copyright": "Copyright © 2020 Cracky",
+		"win": {
+			"target": "portable",
+			"icon": "dist/assets/icon.png"
+		},
+		"directories": {
+			"buildResources": "dist",
+			"output": "release"
+		},
+		"files": [
+			"dist/**/*"
+		]
 	}
 }

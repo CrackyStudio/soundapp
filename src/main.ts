@@ -1,5 +1,8 @@
 import { app, BrowserWindow, Tray, Menu } from "electron";
 import * as path from "path";
+import * as debug from "electron-debug";
+
+// debug();
 
 const iconPath = __dirname + "/assets/icon.png";
 let mainWindow: Electron.BrowserWindow;
@@ -12,14 +15,13 @@ function createWindow() {
 		icon: iconPath,
 		resizable: false,
 		webPreferences: {
-			preload: path.join(__dirname, "preload.js"),
 			nodeIntegration: true,
 			webviewTag: true,
 		},
 		width: 1080,
 	});
 
-	mainWindow.loadFile(path.join(__dirname, "../index.html"));
+	mainWindow.loadFile(path.join(__dirname, "./index.html"));
 
 	// mainWindow.webContents.openDevTools();
 
