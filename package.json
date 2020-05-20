@@ -1,16 +1,15 @@
 {
 	"name": "soundapp",
 	"version": "1.0.0",
-	"main": "./dist/main.js",
-	"description": "Music *.*",
+	"main": "./build/main.js",
+	"description": "SoundApp",
 	"scripts": {
-		"build": "npm run clean && tsc && npm run copy-assets",
 		"watch": "tsc -w",
 		"lint": "tslint -c tslint.json -p tsconfig.json",
+		"clean": "rm -rf node_modules build release package-lock.json",
+		"copy-assets": "cp -rv src/*/ build/ && cp -rv index.html build/",
+		"build": "tsc && npm run copy-assets",
 		"start": "npm run build && electron ./dist/main.js",
-		"copy-assets": "cp -rv src/*/ dist/ && cp -rv index.html dist/",
-		"clean": "rm -rf dist && rm -rf release",
-		"pack": "electron-builder --dir",
 		"dist": "npm run build && electron-builder"
 	},
 	"author": "Cracky",
@@ -31,14 +30,14 @@
 		"copyright": "Copyright © 2020 Cracky",
 		"win": {
 			"target": "portable",
-			"icon": "dist/assets/icon.png"
+			"icon": "build/assets/icon-black.png"
 		},
 		"directories": {
-			"buildResources": "dist",
+			"buildResources": "build",
 			"output": "release"
 		},
 		"files": [
-			"dist/**/*"
+			"build/**/*"
 		]
 	}
 }
