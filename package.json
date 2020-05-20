@@ -9,7 +9,7 @@
 		"clean": "rm -rf node_modules build release package-lock.json",
 		"copy-assets": "cp -rv src/*/ build/ && cp -rv index.html build/",
 		"build": "tsc && npm run copy-assets",
-		"start": "npm run build && electron ./dist/main.js",
+		"start": "npm run build && electron ./build/main.js",
 		"dist": "npm run build && electron-builder"
 	},
 	"author": "Cracky",
