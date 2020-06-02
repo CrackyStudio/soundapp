@@ -18,6 +18,7 @@ $(".forward").click(() => {
 
 webview.addEventListener("dom-ready", () => {
 	webview.insertCSS("::-webkit-scrollbar { display: none; }");
+	webview.send("recolor");
 });
 
 webview.addEventListener("media-started-playing", () => {

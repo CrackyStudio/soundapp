@@ -4,7 +4,7 @@ import * as debug from "electron-debug";
 
 // debug();
 
-const iconPath = __dirname + "/assets/icon.png";
+const iconPath = __dirname + "/assets/sc-icon.png";
 let mainWindow: Electron.BrowserWindow;
 let appTray = null;
 
@@ -46,7 +46,7 @@ function createWindow() {
 	]);
 
 	appTray.setContextMenu(contextMenu);
-	appTray.setToolTip("SoundApp");
+	appTray.setToolTip("SoundCloud Desktop");
 
 	mainWindow.on("close", (e) => {
 		mainWindow = null;
