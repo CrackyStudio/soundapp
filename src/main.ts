@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Tray, Menu } from "electron";
+import { app, BrowserWindow, Tray, Menu, ipcMain } from "electron";
 import * as path from "path";
 import * as debug from "electron-debug";
 
@@ -6,7 +6,7 @@ import * as debug from "electron-debug";
 
 const iconPath = __dirname + "/assets/sc-icon.png";
 let mainWindow: Electron.BrowserWindow;
-let appTray = null;
+let appTray: Tray = null;
 
 function createWindow() {
 	mainWindow = new BrowserWindow({
@@ -69,4 +69,8 @@ app.on("activate", () => {
 	if (mainWindow === null) {
 		createWindow();
 	}
+});
+
+ipcMain.on("set-tooltip", (event, title) => {
+	appTray.setToolTip(title);
 });
