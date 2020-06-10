@@ -5,6 +5,7 @@ import * as debug from "electron-debug";
 // debug();
 
 const iconPath = __dirname + "/assets/sc-icon.png";
+const defaultTitle = "SoundCloud Desktop";
 let mainWindow: Electron.BrowserWindow;
 let appTray: Tray = null;
 
@@ -35,6 +36,12 @@ function createWindow() {
 			},
 		},
 		{
+			label: "Pause",
+			click: () => {
+				mainWindow.webContents.executeJavaScript(`document.getElementById("browser").send("pause-music")`);
+			},
+		},
+		{
 			type: "separator",
 		},
 		{
@@ -46,13 +53,13 @@ function createWindow() {
 	]);
 
 	appTray.setContextMenu(contextMenu);
-	appTray.setToolTip("SoundCloud Desktop");
+	appTray.setToolTip(defaultTitle);
 
-	mainWindow.on("close", (e) => {
+	mainWindow.on("close", () => {
 		mainWindow = null;
 	});
 
-	appTray.on("click", (e) => {
+	appTray.on("click", () => {
 		mainWindow.show();
 	});
 }
@@ -71,6 +78,6 @@ app.on("activate", () => {
 	}
 });
 
-ipcMain.on("set-tooltip", (event, title) => {
+ipcMain.on("set-tooltip", (_event, title = defaultTitle) => {
 	appTray.setToolTip(title);
 });

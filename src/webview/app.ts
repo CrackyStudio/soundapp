@@ -25,4 +25,11 @@ webview.addEventListener("media-started-playing", () => {
 	webview.send("show-music", {
 		id: "playbackSoundBadge__titleLink",
 	});
+	webview.send("set-tooltip");
+});
+
+webview.addEventListener("media-paused", () => {
+	webview.send("set-tooltip", {
+		default: true,
+	});
 });

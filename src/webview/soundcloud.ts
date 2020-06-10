@@ -2,13 +2,21 @@ import { ipcRenderer } from "electron";
 
 export default {
 	showMusic: () => {
-		ipcRenderer.on("show-music", (event, data) => {
+		ipcRenderer.on("show-music", (_event, data) => {
 			(<HTMLElement>document.getElementsByClassName(data.id)[0]).click();
-
+		});
+	},
+	setTooltip: () => {
+		ipcRenderer.on("set-tooltip", (_event, data) => {
 			const user = (<HTMLElement>document.getElementsByClassName("playbackSoundBadge__lightLink")[0]).innerText;
 			const title = (<HTMLElement>document.getElementsByClassName("playbackSoundBadge__titleLink")[0]).title;
 
-			ipcRenderer.send("set-tooltip", `${user} - ${title}`);
+			data ? ipcRenderer.send("set-tooltip") : ipcRenderer.send("set-tooltip", `${user} - ${title}`);
+		});
+	},
+	pauseMusic: () => {
+		ipcRenderer.on("pause-music", () => {
+			(<HTMLElement>document.getElementsByClassName("playControl")[0]).click();
 		});
 	},
 	recolor: () => {
